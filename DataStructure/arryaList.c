@@ -87,12 +87,15 @@ int InsertLeft(List *L, Element e){
     }
     else if(L->current == -1) return 0;
     else if(L->current == 0){
-        L->current = L->last = L->last+1;
+        L->last = L->last+1;
+        for(i=L->last; i>=L->current+1; i--){
+            L->value[i] = L->value[i-1];
+        }
         L->value[L->current] = e;
     }
     else{
         L->last = L->last+1;
-        for(i=L->last; i>=L->current+2; i--){
+        for(i=L->last; i>=L->current+1; i--){
             L->value[i] = L->value[i-1];
         }
         L->current = L->current + 1;
