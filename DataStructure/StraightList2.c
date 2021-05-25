@@ -15,11 +15,11 @@ typedef struct{
 } List;
 
 void Create(List *L){
-    List *tmp;
-    tmp = (List *)malloc(sizeof(List));
-    tmp->head = NULL;
-    tmp->current = NULL;
-    *L = *tmp;
+    NodePointer p;
+    p = malloc(sizeof(Node));
+    p->next = NULL;
+    L->head = p;
+    L->current = NULL;
 }
 
 int Size(List *L){
@@ -216,41 +216,6 @@ void printList(List *L){
 
 int main(){
     // Check Functions.
-    List lst;
-    Element a=0;
-    Create(&lst);
-    // Result of each function -> "Function name + ? + 0or1".
-    printf("Insert? %d\n",InsertRight(&lst, a));
-    a=10;
-    printf("Insert? %d\n",InsertRight(&lst, a));
-    a=20;
-    printf("Insert? %d\n",InsertRight(&lst, a));
-    printf("Size = %d\n", Size(&lst));
-    printList(&lst);
-    // &lst: 0->10->20
-    printf("Findith? %d\n",Findith(&lst, 1));
-    // current = 1, value = 10.
-    printf("Current value = %d\n", CurPos(&lst));
-    a=30;
-    printf("Insert? %d\n",InsertLeft(&lst, a));
-    // &lst: 0->30->10->20
-    printf("Current value = %d\n", CurPos(&lst));
-    printList(&lst);
-
-    printf("FindRight? %d\n",FindRight(&lst));
-    printf("Deleted? %d\n", Delete(&lst));
-    // &lst: 0->30->20
-    printList(&lst);
-
-    Element *b;
-    b = malloc(sizeof(int));
-    printf("Retrieve? %d\n", Retrieve(&lst, b));
-    printf("b = %d\n",*b);
-
-    List lst2;
-    Create(&lst2);
-    Copy(&lst, &lst2);
-    printList(&lst2);
-
+    
     return 0;
 }
