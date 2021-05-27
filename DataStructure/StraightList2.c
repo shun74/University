@@ -25,7 +25,7 @@ void Create(List *L){
 int Size(List *L){
     NodePointer p;
     p = malloc(sizeof(Node));
-    p = L->head;
+    p = L->head->next;
     int count=0;
     while(p!=NULL){
         p = p->next;
@@ -46,12 +46,12 @@ int CurPos(List *L){
 }
 
 int Findith(List *L, int i){
-    if(L->head==NULL){
+    if(L->head->next==NULL){
         return 0;
     }
     NodePointer p;
     p = malloc(sizeof(Node));
-    p = L->head;
+    p = L->head->next;
     for(int j=0; j<i; j++){
         if(p==NULL) return 0;
         p = p->next;
@@ -216,6 +216,6 @@ void printList(List *L){
 
 int main(){
     // Check Functions.
-    
+
     return 0;
 }

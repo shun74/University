@@ -252,5 +252,7 @@ int main(){
     Copy(&lst, &lst2);
     printList(&lst2);
 
+    printf("lst lst2 Equal? %d\n",Equal(&lst,&lst2));
+
     return 0;
 }
