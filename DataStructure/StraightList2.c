@@ -242,5 +242,8 @@ int main(){
 
     printf("lst lst2 Equal? %d\n",Equal(&lst,&lst2));
 
+    printf("FindLeft? %d\n",FindLeft(&lst));
+    printf("Current value = %d\n", CurPos(&lst));
+
     return 0;
 }

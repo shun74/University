@@ -122,15 +122,14 @@ int InsertLeft(List *L, Element e){
 }
 
 int Delete(List *L){
-    NodePointer p, q, r;
+    NodePointer p;
     p = malloc(sizeof(Node));
-    q = malloc(sizeof(Node));
-    r = malloc(sizeof(Node));
     if(L->current == NULL) return 0;
     else if(L->head->right == NULL){
         p = L->current;
         L->head = L->current = NULL;
     } else {
+        p = L->current;
         if(L->current->left == NULL){
             L->current->right->left = NULL;
             L->head = L->current = L->current->right;
@@ -151,6 +150,14 @@ int Retrieve(List *L, Element *v){
     if(L->current == NULL) return 0;
     else {
         *v = L->current->value;
+        return 1;
+    }
+}
+
+int Update(List *L, Element e){
+    if(L->current == NULL) return 0;
+    else {
+        L->current->value = e;
         return 1;
     }
 }
@@ -242,6 +249,9 @@ int main(){
     printList(&lst2);
 
     printf("lst lst2 Equal? %d\n",Equal(&lst,&lst2));
+
+    printf("FindLeft? %d\n",FindLeft(&lst));
+    printf("Current value = %d\n", CurPos(&lst));
 
     return 0;
 }
