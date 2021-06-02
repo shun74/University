@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #define maxsize 1000
 typedef char Element;
 
@@ -49,8 +50,8 @@ void Edit(){
     Create(&S);
     do{
         scanf("%c", &c);
-        if(c == '#'){ 
-            if(!PopUp(&S)){ 
+        if(c == '#'){
+            if(!PopUp(&S)){
                 printf("PopUp Error\n");
                 return;
             }
@@ -66,10 +67,10 @@ void Edit(){
     } while(c!='\n');
     Create(&T);
     while(!Empty(&S)){
-        Retrieve(&S, &e);
-        PushDown(&T, e);
+        PushDown( &T, (Retrieve(&S, &e), e ));
         PopUp(&S);
     }
+    PopUp(&T);
     while(!Empty(&T)){
         Retrieve(&T, &e);
         printf("%c",e);
@@ -77,30 +78,73 @@ void Edit(){
     }
 }
 
-void Calculate(){
+void Calculate(char *s){
     Stack S, T;
-    Element e;
-    char c;
     Create(&S);
-    do{
-        scanf("%c", &c);
-        if(c == '+'){ 
-            if(!PopUp(&S)){ 
-                printf("PopUp Error\n");
-                return;
-            }
+    while(*s!=0){
+        if(*s=='+'){
+            char a,b;
+            int c;
+            Retrieve(&T,&a);
+            PopUp(&T);
+            Retrieve(&T,&b);
+            PopUp(&T);
+            c = (int)a + (int)b;
+            PushDown(&T,(char)c);
+            printf("Push %d + %d \n",(int)a,(int)b);
         }
-        else if (c == '-'){
-            Create(&S);
+        else if(*s=='-'){
+            char a,b;
+            int c;
+            Retrieve(&T,&a);
+            PopUp(&T);
+            Retrieve(&T,&b);
+            PopUp(&T);
+            c = (int)a - (int)b;
+            PushDown(&T,(char)c);
+            printf("Push %d - %d \n",(int)a,(int)b);
+        }
+        else if(*s=='*'){
+            char a,b;
+            int c;
+            Retrieve(&T,&a);
+            PopUp(&T);
+            Retrieve(&T,&b);
+            PopUp(&T);
+            c = (int)a * (int)b;
+            PushDown(&T,(char)c);
+            printf("Push %d * %d \n",(int)a,(int)b);
+        }
+        else if(*s=='/'){
+            char a,b;
+            int c;
+            Retrieve(&T,&a);
+            PopUp(&T);
+            Retrieve(&T,&b);
+            PopUp(&T);
+            c = (int)a / (int)b;
+            PushDown(&T,(char)c);
+            printf("Push %d / %d \n",(int)a,(int)b);
         } else {
-            if(!PushDown(&S, c)){
-                printf("PushDown Error");
-                return;
-            }
+            PushDown(&T,(char)(*s-'0'));
+            printf("Push %c \n",*s);
         }
-    } while(c!='\n');
+        s++;
+    }
+    char a;
+    Retrieve(&T, &a);
+    printf("Answer %d\n",a);
 }
 
 int main(){
+    // Caluculate:入力は1桁のみで記法は逆ポーランド記法です。
+    char s[256];
+    strcpy(s,"12+34+*");
+    printf("%s\n",s);
+    Calculate(s);
+    strcpy(s,"12+34+-12+34+**");
+    printf("%s\n",s);
+    Calculate(s);
+    printf("Edit:");
     Edit();
 }
