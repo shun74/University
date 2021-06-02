@@ -79,8 +79,8 @@ void Edit(){
 }
 
 void Calculate(char *s){
-    Stack S, T;
-    Create(&S);
+    Stack T;
+    Create(&T);
     while(*s!=0){
         if(*s=='+'){
             char a,b;
