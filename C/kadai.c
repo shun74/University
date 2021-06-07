@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <time.h>｜
+#include <time.h>
 // 1 2 17 227 503 1009
 #define n 503
 
@@ -123,7 +123,7 @@ int main(int argc, char *argv[]){
     char address[256];
     struct cell *ptr;
     char word[256];
-    
+
     FILE *fp;
     fp = fopen("postal.txt","r");
     while(fscanf(fp,"%s %s",post_code,address)!=EOF){
