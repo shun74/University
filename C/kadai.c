@@ -123,7 +123,7 @@ int main(int argc, char *argv[]){
     char address[256];
     struct cell *ptr;
     char word[256];
-    
+
     FILE *fp;
     fp = fopen("postal.txt","r");
     while(fscanf(fp,"%s %s",post_code,address)!=EOF){
