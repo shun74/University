@@ -1,0 +1,6 @@
+6319050,2,3
+MonteAI_726,1,0
+MonteAI_672,1,0
+RandomAI_141,0,1
+MonteAI_279,0,1
+MonteAI_123,1,0

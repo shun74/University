@@ -86,14 +86,13 @@ template<typename T>  void table<T>::operator()(const string key) const{
     cout << "Key:" << key << ",value:Not found" << endl;
     return;
 }
+
 template<typename T> void table<T>::operator-=(const string key) const{
     int hash_val = _hash(key);
     struct List *ptr;
     ptr = new List();
     ptr = hashtable[hash_val];
     struct List *ptr2;
-    ptr2 = new List();
-    ptr2 = hashtable[hash_val];
     while(ptr!=NULL){
         if(key.compare(ptr->key)==0){
             if(ptr==hashtable[hash_val]){
@@ -105,15 +104,18 @@ template<typename T> void table<T>::operator-=(const string key) const{
                     ptr->key = ptr->next->key;
                     ptr->value = ptr->next->value;
                     ptr->next = ptr->next->next;
+                    delete(ptr->next);
                 }
             } else {
+                ptr2 = new List();
+                ptr2 = hashtable[hash_val];
                 while(ptr2->next!=ptr){
                     ptr2 = ptr2->next;
                 }
                 ptr2->next = ptr->next;
+                delete(ptr);
             }
             cout << "table:" << hash_val << " " << key << " deleted" << endl;
-            delete(ptr);
             break;
         }
         ptr = ptr->next;
