@@ -68,7 +68,7 @@ class OthelloClient {
 						}
 						long start = System.currentTimeMillis();
 						System.out.println("Searching...");
-						while(System.currentTimeMillis()-start < (long)1000){
+						while(System.currentTimeMillis()-start < (long)9000){
 							Random r = new Random();
 							int index = r.nextInt(available_list.size());
 							int[][] pre_board = convert_board_type(board_state);
